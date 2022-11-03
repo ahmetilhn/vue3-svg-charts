@@ -11,6 +11,7 @@
 <script>
 import ColumnChart from "./components/charts/ColumnChart.vue";
 import exampleChartData from "./data/chart-example-data.json";
+import "@/assets/sass/theme.scss";
 export default {
   name: "App",
   components: {

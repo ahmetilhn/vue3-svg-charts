@@ -1,5 +1,5 @@
 <template>
-  <div
+  <text
     class="chart-tooltip flex--row row--middle--center"
     :style="{
       left: tooltip.position.left,
@@ -8,7 +8,7 @@
     }"
   >
     Tooltip
-  </div>
+  </text>
 </template>
 
 <script>
@@ -23,3 +23,17 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.chart-tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  display: none;
+  background-color: $dark-one;
+  border-radius: 6px;
+  padding: 20px;
+  color: $white;
+  transition: left 0.1s linear;
+}
+</style>

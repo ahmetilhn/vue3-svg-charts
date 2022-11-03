@@ -1,5 +1,5 @@
 <template>
-  <div class="column-chart bordered">
+  <div :style="{ width: width + 'px' }" class="column-chart bordered">
     <svg :width="width" :height="height" id="svg_elem" v-if="chartIsReady">
       <g
         @mouseover="hoverTooltip($event)"
@@ -53,7 +53,7 @@ export default {
   },
   computed: {
     getParsedChartData() {
-      return JSON.parse(JSON.stringify(this.chartData)).reverse();
+      return JSON.parse(JSON.stringify(this.chartData));
     },
   },
   mixins: [chartMixin],
@@ -94,7 +94,7 @@ export default {
 .column-chart {
   position: relative;
   svg {
-    transform: rotate(180deg);
+    transform: scaleY(-1);
     .column {
       &:hover {
         rect {
