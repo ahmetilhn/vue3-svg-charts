@@ -36,5 +36,7 @@ export default {
   color: $white;
   transition: left 0.1s linear;
   font-size: 14px;
+  font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
 }
 </style>

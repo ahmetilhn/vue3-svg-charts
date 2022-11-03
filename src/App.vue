@@ -3,8 +3,8 @@
     :chartData="
       JSON.parse(JSON.stringify(exampleChartData))['column-chart-data']
     "
-    height="200"
-    width="350"
+    chartHeight="200"
+    chartWidth="350"
   />
 </template>
 
