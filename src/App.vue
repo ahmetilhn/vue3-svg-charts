@@ -8,11 +8,12 @@
   />
 </template>
 
-<script>
+<script lang="ts">
 import ColumnChart from "./components/charts/ColumnChart.vue";
 import exampleChartData from "./data/chart-example-data.json";
 import "@/assets/sass/theme.scss";
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   name: "App",
   components: {
     ColumnChart,
@@ -22,7 +23,7 @@ export default {
       exampleChartData,
     };
   },
-};
+});
 </script>
 
 <style lang="scss">

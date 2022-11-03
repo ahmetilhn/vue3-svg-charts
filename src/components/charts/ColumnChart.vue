@@ -8,10 +8,10 @@
         v-if="chartIsReady"
       >
         <g
-          @mouseover="hoverTooltip($event, { content: item.tooltip_content })"
+          @mouseover="hoverTooltip($event, item.tooltip_content)"
           class="column"
           v-for="(item, index) in getParsedChartData"
-          :key="item"
+          :key="item.value"
         >
           <rect
             :height="getRectHeight(item)"
@@ -27,11 +27,13 @@
     </template>
   </div>
 </template>
-<script>
+<script lang="ts">
 import chartMixin from "@/mixins/chart.mixin";
 import ChartTooltip from "../ChartTooltip.vue";
 import ErrorResult from "@/components/ErrorResult.vue";
-export default {
+import { defineComponent, PropType } from "vue";
+import { ColumnChartType } from "@/types/ChartTypes";
+export default defineComponent({
   name: "ColumnChart",
   components: {
     ChartTooltip,
@@ -39,7 +41,7 @@ export default {
   },
   props: {
     chartData: {
-      type: Array,
+      type: Array as PropType<ColumnChartType[]>,
       required: true,
       default: () => [],
     },
@@ -64,29 +66,29 @@ export default {
     };
   },
   computed: {
-    getParsedChartData() {
+    getParsedChartData(): Array<ColumnChartType> {
       return JSON.parse(JSON.stringify(this.chartData));
+    },
+    getOnlyValues(): Array<number> {
+      return this.getParsedChartData.map((item) => item.value);
     },
   },
   mixins: [chartMixin],
   methods: {
     setRectWidth() {
-      const svgWidth = this.chartWidth;
+      const svgWidth: number = Number(this.chartWidth);
       if (svgWidth) {
         this.svg.rectWidth = svgWidth / this.per - 4;
         this.svg.rectX = svgWidth / this.per;
       }
     },
-    getRectHeight(_data) {
-      const sum = this.getParsedChartData?.reduce((a, b) => {
-        if (typeof a === "object") {
-          return Number(a.value) + Number(b.value);
-        }
-        return Number(a) + Number(b.value);
+    getRectHeight(_data: ColumnChartType) {
+      const sum: number = this.getOnlyValues?.reduce((a: number, b: number) => {
+        return Number(a) + Number(b);
       });
       const avg = sum / this.getParsedChartData.length || 0;
       this.average = avg;
-      if (_data.value > this.chartHeight) {
+      if (_data.value > Number(this.chartHeight)) {
         return this.chartHeight;
       }
       return ((avg / _data.value) * 10).toFixed(2);
@@ -102,7 +104,7 @@ export default {
   mounted() {
     this.initSVG();
   },
-};
+});
 </script>
 <style lang="scss" scoped>
 .column-chart {

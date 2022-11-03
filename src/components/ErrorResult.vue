@@ -3,7 +3,7 @@
     <p>An error occurred while compiling the chart :(</p>
   </section>
 </template>
-<script>
+<script lang="ts">
 export default {
   name: "ErrorResult",
 };
