@@ -1,5 +1,5 @@
 <template>
-  <text
+  <div
     class="chart-tooltip flex--row row--middle--center"
     :style="{
       left: tooltip.position.left,
@@ -7,8 +7,8 @@
       display: tooltip.display,
     }"
   >
-    Tooltip
-  </text>
+    {{ tooltip.content }}
+  </div>
 </template>
 
 <script>
@@ -32,8 +32,9 @@ export default {
   display: none;
   background-color: $dark-one;
   border-radius: 6px;
-  padding: 20px;
+  padding: 16px;
   color: $white;
   transition: left 0.1s linear;
+  font-size: 14px;
 }
 </style>

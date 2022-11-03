@@ -2,7 +2,7 @@
   <div :style="{ width: width + 'px' }" class="column-chart bordered">
     <svg :width="width" :height="height" id="svg_elem" v-if="chartIsReady">
       <g
-        @mouseover="hoverTooltip($event)"
+        @mouseover="hoverTooltip($event, { content: item.tooltip_content })"
         class="column"
         v-for="(item, index) in getParsedChartData"
         :key="item"

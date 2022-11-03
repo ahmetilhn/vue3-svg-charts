@@ -7,14 +7,18 @@ export default {
           top: 0,
         },
         display: "none",
+        content: "",
       },
     };
   },
   methods: {
-    hoverTooltip(e) {
-      this.tooltip.position.left = e.offsetX + 10 + "px";
-      this.tooltip.position.top = e.offsetY - 70 + "px";
+    hoverTooltip(domEvent, payload) {
+      this.tooltip.position.left = domEvent.offsetX + 10 + "px";
+      this.tooltip.position.top = domEvent.offsetY - 70 + "px";
       this.tooltip.display = "flex";
+      if (payload.content) {
+        this.tooltip.content = payload.content;
+      }
     },
   },
 };
