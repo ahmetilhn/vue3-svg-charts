@@ -86,7 +86,10 @@ export default {
       });
       const avg = sum / this.getParsedChartData.length || 0;
       this.average = avg;
-      return (_data.value / avg) * 100;
+      if (_data.value > this.chartHeight) {
+        return this.chartHeight;
+      }
+      return ((avg / _data.value) * 10).toFixed(2);
     },
     initSVG() {
       if (this.getParsedChartData.length) {
