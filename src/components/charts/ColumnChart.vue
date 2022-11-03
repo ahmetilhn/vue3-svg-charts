@@ -1,13 +1,17 @@
 <template>
   <div class="column-chart bordered">
-    <svg id="svg_elem" v-if="chartIsReady">
+    <svg :width="width" :height="height" id="svg_elem" v-if="chartIsReady">
       <g
         @mouseover="hoverTooltip($event)"
         class="column"
-        v-for="(item, index) in 80"
+        v-for="(item, index) in getParsedChartData"
         :key="item"
       >
-        <rect height="100" :width="svg.rectWidth" :x="svg.rectX * index"></rect>
+        <rect
+          :height="getRectHeight(item)"
+          :width="svg.rectWidth"
+          :x="svg.rectX * index"
+        ></rect>
       </g>
     </svg>
     <chart-tooltip :tooltip="tooltip" />
@@ -21,39 +25,76 @@ export default {
   components: {
     ChartTooltip,
   },
+  props: {
+    chartData: {
+      type: Array,
+      required: true,
+      default: () => [],
+    },
+    height: {
+      type: String || Number,
+      required: false,
+    },
+    width: {
+      type: String || Number,
+      required: false,
+    },
+  },
   data() {
     return {
-      per: 80,
+      per: 10,
       svg: {
         rectWidth: 0,
         rectX: 0,
       },
-      chartIsReady: true, //bind to res
+      chartIsReady: true, //bind to res,
+      average: 0,
     };
+  },
+  computed: {
+    getParsedChartData() {
+      return JSON.parse(JSON.stringify(this.chartData)).reverse();
+    },
   },
   mixins: [chartMixin],
   methods: {
-    getRectWidth() {
+    setRectWidth() {
       const svgElem = document.getElementById("svg_elem");
-      if (svgElem?.clientWidth) {
-        this.svg.rectWidth =
-          svgElem?.clientWidth / this.per - svgElem?.clientWidth / this.per / 2;
+      const svgWidth = this.width || svgElem?.clientWidth;
+      if (svgWidth) {
+        this.svg.rectWidth = svgWidth / this.per - 5;
         this.svg.rectX = svgElem?.clientWidth / this.per;
+      }
+    },
+    getRectHeight(_data) {
+      // const svgElem = document.getElementById("svg_elem");
+      const sum = this.chartData?.reduce((a, b) => {
+        if (typeof a === "object") {
+          return Number(a.value) + Number(b.value);
+        }
+        return Number(a) + Number(b.value);
+      });
+      const avg = sum / this.chartData.length || 0;
+      this.average = avg;
+      return (_data.value / avg) * 100;
+    },
+    initSVG() {
+      if (this.chartData.length) {
+        this.per = this.chartData.length;
+        this.setRectWidth();
       }
     },
   },
   mounted() {
-    this.getRectWidth();
+    this.initSVG();
   },
 };
 </script>
 <style lang="scss" scoped>
 .column-chart {
-  width: 100%;
   position: relative;
   svg {
-    width: 100%;
-    height: 100px;
+    transform: rotate(180deg);
     .column {
       &:hover {
         rect {

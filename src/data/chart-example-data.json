@@ -1,0 +1,52 @@
+{
+  "column-chart-data": [
+    {
+      "value": 100,
+      "tooltip_content": "Tooltip data"
+    },
+    {
+      "value": 100,
+      "tooltip_content": "Tooltip data"
+    },
+    {
+      "value": 50,
+      "tooltip_content": "Tooltip data"
+    },
+    {
+      "value": 90,
+      "tooltip_content": "Tooltip data"
+    },
+    {
+      "value": 30,
+      "tooltip_content": "Tooltip data"
+    },
+    {
+      "value": 10,
+      "tooltip_content": "Tooltip data"
+    },
+    {
+      "value": 300,
+      "tooltip_content": "Tooltip data"
+    },
+    {
+      "value": 200,
+      "tooltip_content": "Tooltip data"
+    },
+    {
+      "value": 100,
+      "tooltip_content": "Tooltip data"
+    },
+    {
+      "value": 500,
+      "tooltip_content": "Tooltip data"
+    },
+    {
+      "value": 300,
+      "tooltip_content": "Tooltip data"
+    },
+    {
+      "value": 30,
+      "tooltip_content": "Tooltip data"
+    }
+  ]
+}
