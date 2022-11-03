@@ -10,7 +10,7 @@
         <rect height="100" :width="svg.rectWidth" :x="svg.rectX * index"></rect>
       </g>
     </svg>
-    <chart-tooltip />
+    <chart-tooltip :tooltip="tooltip" />
   </div>
 </template>
 <script>

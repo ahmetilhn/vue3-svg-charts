@@ -12,9 +12,14 @@
 </template>
 
 <script>
-import chartMixin from "@/mixins/chart.mixin";
 export default {
   name: "ChartTooltip",
-  mixins: [chartMixin],
+  props: {
+    tooltip: {
+      type: Object,
+      default: () => {},
+      required: true,
+    },
+  },
 };
 </script>
