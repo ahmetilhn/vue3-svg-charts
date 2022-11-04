@@ -1,12 +1,14 @@
 <template>
   <column-chart
-    :chartData="
-      JSON.parse(JSON.stringify(exampleChartData))['column-chart-data']
-    "
+    :chartData="exampleChartData['column-chart-data']"
     chartHeight="200"
     chartWidth="350"
   />
-  <line-chart chartHeight="200" chartWidth="350" />
+  <line-chart
+    :chartData="exampleChartData['line-chart-data']"
+    chartHeight="200"
+    chartWidth="350"
+  />
 </template>
 
 <script lang="ts">
