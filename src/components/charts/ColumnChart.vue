@@ -82,16 +82,16 @@ export default defineComponent({
         this.svg.rectX = svgWidth / this.per;
       }
     },
-    getRectHeight(_data: ColumnChartType) {
+    getRectHeight(_data: ColumnChartType): number {
       const sum: number = this.getOnlyValues?.reduce((a: number, b: number) => {
         return Number(a) + Number(b);
       });
-      const avg = sum / this.getParsedChartData.length || 0;
+      const avg: number = sum / this.getParsedChartData.length || 0;
       this.average = avg;
       if (_data.value > Number(this.chartHeight)) {
-        return this.chartHeight;
+        return Number(this.chartHeight);
       }
-      return ((avg / _data.value) * 10).toFixed(2);
+      return Number(((avg / _data.value) * 10).toFixed(2));
     },
     initSVG() {
       if (this.getParsedChartData.length) {
