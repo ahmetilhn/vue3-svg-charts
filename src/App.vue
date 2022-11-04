@@ -6,17 +6,20 @@
     chartHeight="200"
     chartWidth="350"
   />
+  <line-chart chartHeight="200" chartWidth="350" />
 </template>
 
 <script lang="ts">
-import ColumnChart from "./components/charts/ColumnChart.vue";
-import exampleChartData from "./data/chart-example-data.json";
+import ColumnChart from "@/components/charts/ColumnChart.vue";
+import LineChart from "@/components/charts/LineChart.vue";
+import exampleChartData from "@/data/chart-example-data.json";
 import "@/assets/sass/theme.scss";
 import { defineComponent } from "vue";
 export default defineComponent({
   name: "App",
   components: {
     ColumnChart,
+    LineChart,
   },
   data() {
     return {
@@ -34,5 +37,11 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  div {
+    margin: 20px;
+  }
 }
 </style>

@@ -12,14 +12,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import TooltipType from "@/types/TooltipType";
+import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
   name: "ChartTooltip",
   props: {
     tooltip: {
-      type: Object,
-      default: () => {},
+      type: Object as PropType<TooltipType>,
       required: true,
     },
   },

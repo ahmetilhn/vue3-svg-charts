@@ -1,12 +1,7 @@
 <template>
   <div :style="{ width: chartWidth + 'px' }" class="column-chart bordered">
     <template v-if="chartIsReady">
-      <svg
-        :width="chartWidth"
-        :height="chartHeight"
-        id="svg_elem"
-        v-if="chartIsReady"
-      >
+      <svg v-if="chartIsReady" :width="chartWidth" :height="chartHeight">
         <g
           @mouseover="hoverTooltip($event, item.tooltip_content)"
           class="column"
@@ -76,7 +71,7 @@ export default defineComponent({
   mixins: [chartMixin],
   methods: {
     setRectWidth() {
-      const svgWidth: number = Number(this.chartWidth);
+      const svgWidth = Number(this.chartWidth);
       if (svgWidth) {
         this.svg.rectWidth = svgWidth / this.per - 4;
         this.svg.rectX = svgWidth / this.per;
