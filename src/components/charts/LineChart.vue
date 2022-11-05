@@ -118,7 +118,7 @@ export default defineComponent({
     circle {
       fill: $dark-two;
       stroke: $dark-two;
-      stroke-width: 1px;
+      stroke-width: 2px;
       transition: stroke-width 0.1s linear;
       cursor: pointer;
       &:hover {
