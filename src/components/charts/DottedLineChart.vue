@@ -1,27 +1,36 @@
 <template>
-  <div
-    class="dotted-line-chart bordered"
-    :style="{ width: chartWidth + 'px', height: chartHeight + 'px' }"
+  <chart-layout
+    :chart-height="chartHeight"
+    :chart-width="chartWidth"
+    :tooltip="tooltip"
+    :is-error="!chartIsReady"
   >
-    <svg v-if="chartIsReady" :width="chartWidth" :height="chartHeight">
-      <path :d="svg.d" />
-      <g>
-        <circle
-          v-for="item in svg.circles"
-          :key="item.cx"
-          :cx="item.cx"
-          :cy="item.cy"
-          r="2"
-        />
-      </g>
-    </svg>
-  </div>
+    <template v-slot:chart>
+      <div class="dotted-line-chart chart bordered">
+        <svg :width="chartWidth" :height="chartHeight">
+          <path :d="svg.d" />
+          <g class="circles">
+            <circle
+              v-for="item in svg.circles"
+              :key="item.cx"
+              :cx="item.cx"
+              :cy="item.cy"
+              r="2"
+            />
+          </g>
+        </svg>
+      </div>
+    </template>
+  </chart-layout>
 </template>
 <script lang="ts">
 import { LineChartType } from "@/types/ChartTypes";
 import { defineComponent, PropType } from "vue";
 import { heightToValCalc } from "@/utils/chart-algorithm";
+import ChartLayout from "@/layouts/ChartLayout.vue";
+import chartMixin from "@/mixins/chart.mixin";
 export default defineComponent({
+  components: { ChartLayout },
   name: "DottedLineChart",
   props: {
     chartData: {
@@ -48,6 +57,7 @@ export default defineComponent({
       chartIsReady: false, //bind to res,
     };
   },
+  mixins: [chartMixin],
   computed: {
     getParsedChartData(): Array<LineChartType> {
       return JSON.parse(JSON.stringify(this.chartData));
@@ -107,7 +117,8 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .dotted-line-chart {
-  position: relative;
+  width: 100%;
+  height: 100%;
   svg {
     path {
       stroke-width: 2;
@@ -115,14 +126,16 @@ export default defineComponent({
       stroke-dasharray: 1000;
       animation: dashEffect 2s ease-in;
     }
-    circle {
-      fill: $dark-two;
-      stroke: $dark-two;
-      stroke-width: 2px;
-      transition: stroke-width 0.1s linear;
-      cursor: pointer;
-      &:hover {
-        stroke-width: 6px;
+    .circles {
+      circle {
+        fill: $dark-two;
+        stroke: $dark-two;
+        stroke-width: 2px;
+        transition: stroke-width 0.1s linear;
+        cursor: pointer;
+        &:hover {
+          stroke-width: 6px;
+        }
       }
     }
   }
