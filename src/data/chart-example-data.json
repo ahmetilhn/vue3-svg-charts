@@ -196,5 +196,19 @@
       "value": 90,
       "tooltip_content": "30"
     }
+  ],
+  "radial-chart-data": [
+    {
+      "value": 10,
+      "tooltip_content": "100"
+    },
+    {
+      "value": 30,
+      "tooltip_content": "100"
+    },
+    {
+      "value": 100,
+      "tooltip_content": "50"
+    }
   ]
 }

@@ -9,3 +9,9 @@ export const heightToValCalc = (
   }
   return val / (max / Number(chartHeight));
 };
+
+export const ratioToRadialDash = (data: number[], val: number) => {
+  const sum = data.reduce((a, b) => a + b);
+  const radialLimit = 100;
+  return (val / sum) * 100;
+};

@@ -19,6 +19,11 @@
     chartHeight="200"
     chartWidth="350"
   />
+  <radial-chart
+    :chartData="exampleChartData['radial-chart-data']"
+    chartHeight="200"
+    chartWidth="350"
+  />
 </template>
 
 <script lang="ts">
@@ -26,6 +31,7 @@ import ColumnChart from "@/components/charts/ColumnChart.vue";
 import DottedLineChart from "@/components/charts/DottedLineChart.vue";
 import SteppedLineChart from "@/components/charts/SteppedLineChart.vue";
 import BubbleChart from "@/components/charts/BubbleChart.vue";
+import RadialChart from "@/components/charts/RadialChart.vue";
 import exampleChartData from "@/data/chart-example-data.json";
 import "@/assets/sass/theme.scss";
 import { defineComponent } from "vue";
@@ -36,6 +42,7 @@ export default defineComponent({
     SteppedLineChart,
     DottedLineChart,
     BubbleChart,
+    RadialChart,
   },
   data() {
     return {

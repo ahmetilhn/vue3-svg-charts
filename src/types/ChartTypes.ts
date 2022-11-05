@@ -11,3 +11,8 @@ export type BubbleChartType = {
   value: number;
   tooltip_content: string;
 };
+
+export type RadialChartType = {
+  value: number;
+  tooltip_content: string;
+};
