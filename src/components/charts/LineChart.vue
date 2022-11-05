@@ -112,6 +112,8 @@ export default defineComponent({
     path {
       stroke-width: 2;
       stroke: $primary-color;
+      stroke-dasharray: 1000;
+      animation: dashEffect 2s ease-in;
     }
     circle {
       fill: $dark-two;

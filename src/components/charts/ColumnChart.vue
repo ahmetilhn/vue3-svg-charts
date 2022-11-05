@@ -120,6 +120,7 @@ export default defineComponent({
       rect {
         fill: $primary-color;
         transition: height 0.2s;
+        animation: heightEffect 0.5s forwards;
       }
     }
   }
