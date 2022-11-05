@@ -1,5 +1,8 @@
 .bordered {
-  border: 1px solid $gray-one;
-  border-radius: 10px;
-  padding: 10px;
+  border-style: dashed;
+  border-width: 2px;
+  border-color: $gray-one;
+  border-right: none;
+  border-top: none;
+  padding: 16px;
 }

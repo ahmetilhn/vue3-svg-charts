@@ -163,6 +163,38 @@
     {
       "value": 200,
       "tooltip_content": "30"
+    },
+    {
+      "value": 100,
+      "tooltip_content": "100"
+    },
+    {
+      "value": 40,
+      "tooltip_content": "30"
+    },
+    {
+      "value": 150,
+      "tooltip_content": "100"
+    },
+    {
+      "value": 120,
+      "tooltip_content": "30"
+    },
+    {
+      "value": 50,
+      "tooltip_content": "100"
+    },
+    {
+      "value": 20,
+      "tooltip_content": "30"
+    },
+    {
+      "value": 10,
+      "tooltip_content": "100"
+    },
+    {
+      "value": 90,
+      "tooltip_content": "30"
     }
   ]
 }
