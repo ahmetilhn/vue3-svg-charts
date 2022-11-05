@@ -9,7 +9,7 @@
       <div class="column-chart bordered" v-if="chartIsReady">
         <svg :width="chartWidth" :height="chartHeight">
           <g
-            @mouseover="hoverTooltip($event, item.tooltip_content)"
+            @mousemove="hoverTooltip($event, item.tooltip_content)"
             class="column"
             v-for="(item, index) in getParsedChartData"
             :key="item.value"
@@ -60,7 +60,6 @@ export default defineComponent({
       },
       chartIsReady: false, //bind to res,
       average: 0,
-      isError: false,
     };
   },
   computed: {
@@ -107,7 +106,6 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .column-chart {
-  position: relative;
   width: 100%;
   height: 100%;
   svg {
