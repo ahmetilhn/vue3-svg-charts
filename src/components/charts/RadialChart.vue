@@ -7,7 +7,7 @@
       <circle
         v-for="item in reversedCircles"
         :key="item.strokeDashoffset"
-        :r="Number(chartWidth) / 4"
+        :r="Number(chartWidth) / 4.5"
         :cx="Number(chartWidth) / 2"
         :cy="Number(chartHeight) / 2"
         :stroke="item.strokeColor"
@@ -95,8 +95,11 @@ export default defineComponent({
   svg {
     circle {
       fill: transparent;
-      stroke-width: 25px;
-      //animation: dashEffect 0.5s ease-in-out;
+      stroke-width: 30px;
+      animation: dashEffect 0.8s ease-in-out;
+      &:hover {
+        stroke: $dark-one;
+      }
     }
   }
 }

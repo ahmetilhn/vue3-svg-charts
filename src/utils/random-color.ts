@@ -1,5 +1,8 @@
 export const getRandomColor = (): string => {
-  const baseColor = "#FF6247";
-  const randomAlpha = Math.floor(Math.random() * (100 - 50 + 1) + 50);
-  return baseColor + randomAlpha;
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 };
