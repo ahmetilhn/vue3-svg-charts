@@ -2,22 +2,20 @@
   <chart-layout
     :chart-height="chartHeight"
     :chart-width="chartWidth"
-    :is-error="!chartIsReady"
     :tooltip="tooltip"
+    :is-error="!chartIsReady"
   >
     <template v-slot:chart>
-      <div class="column-chart bordered" v-if="chartIsReady">
+      <div class="column-chart chart bordered">
         <svg :width="chartWidth" :height="chartHeight">
-          <g
-            @mousemove="hoverTooltip($event, item.tooltip_content)"
-            class="column"
-            v-for="(item, index) in getParsedChartData"
-            :key="item.value"
-          >
+          <g class="rects">
             <rect
+              v-for="(item, index) in getParsedChartData"
+              :key="item.value"
               :height="getRectHeight(item)"
               :width="svg.rectWidth"
               :x="svg.rectX * index"
+              @mousemove="hoverTooltip($event, item.tooltip_content)"
             ></rect>
           </g>
         </svg>
@@ -110,16 +108,15 @@ export default defineComponent({
   height: 100%;
   svg {
     transform: scaleY(-1);
-    .column {
-      &:hover {
-        rect {
-          fill: $primary-color-light;
-        }
-      }
+    .rects {
       rect {
         fill: $primary-color;
         transition: height 0.2s;
         animation: heightEffect 0.5s forwards;
+
+        &:hover {
+          fill: $primary-color-light;
+        }
       }
     }
   }
