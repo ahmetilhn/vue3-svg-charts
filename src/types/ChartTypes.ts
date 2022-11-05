@@ -1,18 +1,18 @@
-export type ColumnChartType = {
-  value: number;
-  tooltip_content: string;
+type BaseChartType = {
+  color?: string;
+  label: string | number;
 };
-export type LineChartType = {
+export type ColumnChartType = BaseChartType & {
   value: number;
-  tooltip_content: string;
 };
-
-export type BubbleChartType = {
+export type LineChartType = BaseChartType & {
   value: number;
-  tooltip_content: string;
 };
 
-export type RadialChartType = {
+export type BubbleChartType = BaseChartType & {
   value: number;
-  tooltip_content: string;
+};
+
+export type RadialChartType = BaseChartType & {
+  value: number;
 };

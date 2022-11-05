@@ -15,7 +15,7 @@
               :height="getRectHeight(item)"
               :width="svg.rectWidth"
               :x="svg.rectX * index"
-              @mousemove="hoverTooltip($event, item.tooltip_content)"
+              @mousemove="hoverTooltip($event, item.label)"
             ></rect>
           </g>
         </svg>

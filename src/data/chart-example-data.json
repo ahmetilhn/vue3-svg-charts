@@ -2,253 +2,253 @@
   "column-chart-data": [
     {
       "value": 10,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 100,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 50,
-      "tooltip_content": "50"
+      "label": "50"
     },
     {
       "value": 90,
-      "tooltip_content": "90"
+      "label": "90"
     },
     {
       "value": 30,
-      "tooltip_content": "30"
+      "label": "30"
     },
     {
       "value": 10,
-      "tooltip_content": "10"
+      "label": "10"
     },
     {
       "value": 20,
-      "tooltip_content": "300"
+      "label": "300"
     },
     {
       "value": 100,
-      "tooltip_content": "200"
+      "label": "200"
     },
     {
       "value": 10,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 10,
-      "tooltip_content": "500"
+      "label": "500"
     },
     {
       "value": 30,
-      "tooltip_content": "300"
+      "label": "300"
     },
     {
       "value": 30,
-      "tooltip_content": "30"
+      "label": "30"
     }
   ],
   "line-chart-data": [
     {
       "value": 100,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 10,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 50,
-      "tooltip_content": "50"
+      "label": "50"
     },
     {
       "value": 90,
-      "tooltip_content": "90"
+      "label": "90"
     },
     {
       "value": 30,
-      "tooltip_content": "30"
+      "label": "30"
     },
     {
       "value": 10,
-      "tooltip_content": "10"
+      "label": "10"
     },
     {
       "value": 100,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 100,
-      "tooltip_content": "200"
+      "label": "200"
     },
     {
       "value": 100,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 50,
-      "tooltip_content": "200"
+      "label": "200"
     },
     {
       "value": 200,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 30,
-      "tooltip_content": "30"
+      "label": "30"
     }
   ],
   "bubble-chart-data": [
     {
       "value": 100,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 10,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 100,
-      "tooltip_content": "50"
+      "label": "50"
     },
     {
       "value": 90,
-      "tooltip_content": "90"
+      "label": "90"
     },
     {
       "value": 200,
-      "tooltip_content": "30"
+      "label": "30"
     },
     {
       "value": 10,
-      "tooltip_content": "10"
+      "label": "10"
     },
     {
       "value": 100,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 100,
-      "tooltip_content": "200"
+      "label": "200"
     },
     {
       "value": 100,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 50,
-      "tooltip_content": "200"
+      "label": "200"
     },
     {
       "value": 200,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 30,
-      "tooltip_content": "30"
+      "label": "30"
     },
     {
       "value": 20,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 300,
-      "tooltip_content": "30"
+      "label": "30"
     },
     {
       "value": 100,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 200,
-      "tooltip_content": "30"
+      "label": "30"
     },
     {
       "value": 100,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 40,
-      "tooltip_content": "30"
+      "label": "30"
     },
     {
       "value": 150,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 120,
-      "tooltip_content": "30"
+      "label": "30"
     },
     {
       "value": 50,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 20,
-      "tooltip_content": "30"
+      "label": "30"
     },
     {
       "value": 10,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 90,
-      "tooltip_content": "30"
+      "label": "30"
     }
   ],
   "radial-chart-data": [
     {
       "value": 100,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 10,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 100,
-      "tooltip_content": "50"
+      "label": "50"
     },
     {
       "value": 90,
-      "tooltip_content": "90"
+      "label": "90"
     },
     {
       "value": 200,
-      "tooltip_content": "30"
+      "label": "30"
     },
     {
       "value": 10,
-      "tooltip_content": "10"
+      "label": "10"
     },
     {
       "value": 100,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 100,
-      "tooltip_content": "200"
+      "label": "200"
     },
     {
       "value": 100,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 50,
-      "tooltip_content": "200"
+      "label": "200"
     },
     {
       "value": 200,
-      "tooltip_content": "100"
+      "label": "100"
     },
     {
       "value": 30,
-      "tooltip_content": "30"
+      "label": "30"
     },
     {
       "value": 20,
-      "tooltip_content": "100"
+      "label": "100"
     }
   ]
 }

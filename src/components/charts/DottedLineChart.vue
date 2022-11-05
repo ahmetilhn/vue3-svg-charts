@@ -15,7 +15,6 @@
               :key="item.cx"
               :cx="item.cx"
               :cy="item.cy"
-              r="2"
             />
           </g>
         </svg>
@@ -29,6 +28,7 @@ import { defineComponent, PropType } from "vue";
 import { heightToValCalc } from "@/utils/chart-algorithm";
 import ChartLayout from "@/layouts/ChartLayout.vue";
 import chartMixin from "@/mixins/chart.mixin";
+import { CircleType } from "@/types/SvgTypes";
 export default defineComponent({
   components: { ChartLayout },
   name: "DottedLineChart",
@@ -52,7 +52,7 @@ export default defineComponent({
       per: 0,
       svg: {
         d: "",
-        circles: [] as { cx: number; cy: number }[],
+        circles: [] as CircleType[],
       },
       chartIsReady: false, //bind to res,
     };
@@ -93,15 +93,15 @@ export default defineComponent({
           DMY = DMY + 5;
         }
         d = d.concat(`M${DMX} ${lastDMY} L${(index + 1) * distance} ${DMY} `);
-        this.setCircles(DMX, lastDMY);
+        this.setCircle({ cx: DMX, cy: lastDMY });
         this.svg.d = d;
         lastDMY = DMY;
       });
     },
-    setCircles(cx: number, cy: number) {
+    setCircle(circle: CircleType) {
       this.svg.circles.push({
-        cx: cx,
-        cy: cy,
+        cx: circle.cx,
+        cy: circle.cy,
       });
     },
     initSVG() {
@@ -133,6 +133,7 @@ export default defineComponent({
         stroke-width: 2px;
         transition: stroke-width 0.1s linear;
         cursor: pointer;
+        r: 3;
         &:hover {
           stroke-width: 6px;
         }
