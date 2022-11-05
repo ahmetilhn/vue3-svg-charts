@@ -1,26 +1,36 @@
 <template>
-  <div
-    class="bubble-chart bordered"
-    :style="{ width: chartWidth + 'px', height: chartHeight + 'px' }"
+  <chart-layout
+    :chart-height="chartHeight"
+    :chart-width="chartWidth"
+    :tooltip="tooltip"
+    :is-error="!chartIsReady"
   >
-    <svg v-if="chartIsReady" :width="chartWidth" :height="chartHeight">
-      <g>
-        <circle
-          v-for="item in svg.circles"
-          :key="item.cx"
-          :cx="item.cx"
-          :cy="item.cy"
-          :r="item.r"
-        />
-      </g>
-    </svg>
-  </div>
+    <template v-slot:chart>
+      <div class="bubble-chart chart bordered">
+        <svg :width="chartWidth" :height="chartHeight">
+          <g class="circles">
+            <circle
+              v-for="item in svg.circles"
+              :key="item.cx"
+              :cx="item.cx"
+              :cy="item.cy"
+              :r="item.r"
+            />
+          </g>
+        </svg>
+      </div>
+    </template>
+  </chart-layout>
 </template>
 <script lang="ts">
 import { BubbleChartType } from "@/types/ChartTypes";
 import { defineComponent, PropType } from "vue";
 import { heightToValCalc } from "@/utils/chart-algorithm";
+import { CircleType } from "@/types/SvgTypes";
+import ChartLayout from "@/layouts/ChartLayout.vue";
+import chartMixin from "@/mixins/chart.mixin";
 export default defineComponent({
+  components: { ChartLayout },
   name: "BubbleChart",
   props: {
     chartData: {
@@ -41,11 +51,12 @@ export default defineComponent({
     return {
       per: 0,
       svg: {
-        circles: [] as Array<{ cx: number; cy: number; r: number }>,
+        circles: [] as Array<CircleType>,
       },
       chartIsReady: false, //bind to res,
     };
   },
+  mixins: [chartMixin],
   computed: {
     getParsedChartData(): Array<BubbleChartType> {
       return JSON.parse(JSON.stringify(this.chartData));
@@ -67,7 +78,6 @@ export default defineComponent({
           ...this.getParsedChartData.map((item) => item.value)
         );
         // margin for ui
-
         if (index === 0) {
           distance = distance + 10;
         }
@@ -94,9 +104,10 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .bubble-chart {
-  position: relative;
+  width: 100%;
+  height: 100%;
   svg {
-    g {
+    .circles {
       circle {
         fill: $primary-color;
       }

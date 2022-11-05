@@ -13,8 +13,8 @@
               v-for="(item, index) in getParsedChartData"
               :key="item.value"
               :height="getRectHeight(item)"
-              :width="svg.rectWidth"
-              :x="svg.rectX * index"
+              :width="svg.rect.width"
+              :x="Number(svg.rect.x) * index"
               @mousemove="hoverTooltip($event, item.label)"
             ></rect>
           </g>
@@ -29,6 +29,7 @@ import ChartLayout from "@/layouts/ChartLayout.vue";
 import { defineComponent, PropType } from "vue";
 import { ColumnChartType } from "@/types/ChartTypes";
 import { heightToValCalc } from "@/utils/chart-algorithm";
+import { RectType } from "@/types/SvgTypes";
 export default defineComponent({
   name: "ColumnChart",
   components: {
@@ -53,8 +54,10 @@ export default defineComponent({
     return {
       per: 0,
       svg: {
-        rectWidth: 0,
-        rectX: 0,
+        rect: {
+          width: 0,
+          x: 0,
+        } as RectType,
       },
       chartIsReady: false, //bind to res,
       average: 0,
@@ -73,8 +76,8 @@ export default defineComponent({
     setRectWidth() {
       const svgWidth = Number(this.chartWidth);
       if (svgWidth) {
-        this.svg.rectWidth = svgWidth / this.per - 4;
-        this.svg.rectX = svgWidth / this.per;
+        this.svg.rect.width = svgWidth / this.per - 4;
+        this.svg.rect.x = svgWidth / this.per;
       }
     },
     getRectHeight(_data: ColumnChartType): number {

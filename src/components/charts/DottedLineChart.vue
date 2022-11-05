@@ -8,7 +8,7 @@
     <template v-slot:chart>
       <div class="dotted-line-chart chart bordered">
         <svg :width="chartWidth" :height="chartHeight">
-          <path :d="svg.d" />
+          <path :d="svg.path.d" />
           <g class="circles">
             <circle
               v-for="item in svg.circles"
@@ -28,7 +28,7 @@ import { defineComponent, PropType } from "vue";
 import { heightToValCalc } from "@/utils/chart-algorithm";
 import ChartLayout from "@/layouts/ChartLayout.vue";
 import chartMixin from "@/mixins/chart.mixin";
-import { CircleType } from "@/types/SvgTypes";
+import { CircleType, PathType } from "@/types/SvgTypes";
 export default defineComponent({
   components: { ChartLayout },
   name: "DottedLineChart",
@@ -51,7 +51,9 @@ export default defineComponent({
     return {
       per: 0,
       svg: {
-        d: "",
+        path: {
+          d: "",
+        } as PathType,
         circles: [] as CircleType[],
       },
       chartIsReady: false, //bind to res,
@@ -94,7 +96,7 @@ export default defineComponent({
         }
         d = d.concat(`M${DMX} ${lastDMY} L${(index + 1) * distance} ${DMY} `);
         this.setCircle({ cx: DMX, cy: lastDMY });
-        this.svg.d = d;
+        this.svg.path.d = d;
         lastDMY = DMY;
       });
     },
