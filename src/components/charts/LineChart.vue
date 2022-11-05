@@ -1,5 +1,8 @@
 <template>
-  <div class="line-chart bordered">
+  <div
+    class="line-chart bordered"
+    :style="{ width: chartWidth + 'px', height: chartHeight + 'px' }"
+  >
     <svg v-if="chartIsReady" :width="chartWidth" :height="chartHeight">
       <path :d="svg.d" />
       <g>
@@ -8,7 +11,7 @@
           :key="item.cx"
           :cx="item.cx"
           :cy="item.cy"
-          r="3"
+          r="2"
         />
       </g>
     </svg>
@@ -109,6 +112,13 @@ export default defineComponent({
     }
     circle {
       fill: $dark-two;
+      stroke: $dark-two;
+      stroke-width: 1px;
+      transition: stroke-width 0.1s linear;
+      cursor: pointer;
+      &:hover {
+        stroke-width: 6px;
+      }
     }
   }
 }

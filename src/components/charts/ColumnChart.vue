@@ -1,5 +1,8 @@
 <template>
-  <div :style="{ width: chartWidth + 'px' }" class="column-chart bordered">
+  <div
+    :style="{ width: chartWidth + 'px', height: chartHeight + 'px' }"
+    class="column-chart bordered"
+  >
     <template v-if="chartIsReady">
       <svg v-if="chartIsReady" :width="chartWidth" :height="chartHeight">
         <g
@@ -28,6 +31,7 @@ import ChartTooltip from "../ChartTooltip.vue";
 import ErrorResult from "@/components/ErrorResult.vue";
 import { defineComponent, PropType } from "vue";
 import { ColumnChartType } from "@/types/ChartTypes";
+import { heightToValCalc } from "@/utils/chart-algorithm";
 export default defineComponent({
   name: "ColumnChart",
   components: {
@@ -78,15 +82,25 @@ export default defineComponent({
       }
     },
     getRectHeight(_data: ColumnChartType): number {
+      const minVal = Math.min(
+        ...this.getParsedChartData.map((item) => item.value)
+      );
+      const maxVal = Math.max(
+        ...this.getParsedChartData.map((item) => item.value)
+      );
       const sum: number = this.getOnlyValues?.reduce((a: number, b: number) => {
         return Number(a) + Number(b);
       });
       const avg: number = sum / this.getParsedChartData.length || 0;
       this.average = avg;
-      if (_data.value > Number(this.chartHeight)) {
+      if (_data.value >= Number(this.chartHeight)) {
         return Number(this.chartHeight);
       }
-      return Number(((avg / _data.value) * 10).toFixed(2));
+      return heightToValCalc(
+        [...this.getParsedChartData.map((item) => item.value)],
+        _data.value,
+        Number(this.chartHeight)
+      );
     },
     initSVG() {
       if (this.getParsedChartData.length) {

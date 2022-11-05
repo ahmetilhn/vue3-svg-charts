@@ -1,12 +1,12 @@
 <template>
   <column-chart
     :chartData="exampleChartData['column-chart-data']"
-    chartHeight="200"
+    chartHeight="100"
     chartWidth="350"
   />
   <line-chart
     :chartData="exampleChartData['line-chart-data']"
-    chartHeight="200"
+    chartHeight="100"
     chartWidth="350"
   />
 </template>
