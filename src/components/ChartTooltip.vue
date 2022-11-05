@@ -32,10 +32,10 @@ export default defineComponent({
   left: 0;
   visibility: hidden;
   display: none;
-  background-color: $dark-one;
+  background-color: $gray-one;
   border-radius: 6px;
   padding: 16px;
-  color: $white;
+  color: $dark-one;
   transition: left 0.1s linear;
   font-size: 14px;
   font-weight: 500;
