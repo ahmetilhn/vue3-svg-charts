@@ -14,12 +14,18 @@
     chartHeight="200"
     chartWidth="350"
   />
+  <bubble-chart
+    :chartData="exampleChartData['bubble-chart-data']"
+    chartHeight="200"
+    chartWidth="350"
+  />
 </template>
 
 <script lang="ts">
 import ColumnChart from "@/components/charts/ColumnChart.vue";
 import DottedLineChart from "@/components/charts/DottedLineChart.vue";
 import SteppedLineChart from "@/components/charts/SteppedLineChart.vue";
+import BubbleChart from "@/components/charts/BubbleChart.vue";
 import exampleChartData from "@/data/chart-example-data.json";
 import "@/assets/sass/theme.scss";
 import { defineComponent } from "vue";
@@ -29,6 +35,7 @@ export default defineComponent({
     ColumnChart,
     SteppedLineChart,
     DottedLineChart,
+    BubbleChart,
   },
   data() {
     return {
