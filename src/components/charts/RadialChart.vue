@@ -1,28 +1,40 @@
 <template>
-  <div
-    class="radial-chart bordered"
-    :style="{ width: chartWidth + 'px', height: chartHeight + 'px' }"
+  <chart-layout
+    :chart-height="chartHeight"
+    :chart-width="chartWidth"
+    :tooltip="tooltip"
+    :is-error="!chartIsReady"
   >
-    <svg v-if="chartIsReady" :width="chartWidth" :height="chartHeight">
-      <circle
-        v-for="item in reversedCircles"
-        :key="item.strokeDashoffset"
-        :r="Number(chartWidth) / 4.5"
-        :cx="Number(chartWidth) / 2"
-        :cy="Number(chartHeight) / 2"
-        :stroke="item.strokeColor"
-        stroke-dasharray="550"
-        :stroke-dashoffset="item.strokeDashoffset"
-      />
-    </svg>
-  </div>
+    <template v-slot:chart>
+      <div class="radial-chart chart bordered">
+        <svg :width="chartWidth" :height="chartHeight">
+          <g class="circles">
+            <circle
+              v-for="item in reversedCircles"
+              :key="item.strokeDashoffset"
+              :r="Number(chartWidth) / 4.5"
+              :cx="Number(chartWidth) / 2"
+              :cy="Number(chartHeight) / 2"
+              :stroke="item.stroke"
+              :stroke-dashoffset="item.strokeDashoffset"
+              @mousemove="hoverTooltip($event, item.label)"
+            />
+          </g>
+        </svg>
+      </div>
+    </template>
+  </chart-layout>
 </template>
 <script lang="ts">
 import { RadialChartType } from "@/types/ChartTypes";
 import { defineComponent, PropType } from "vue";
 import { ratioToRadialDash } from "@/utils/chart-algorithm";
 import { getRandomColor } from "@/utils/random-color";
+import ChartLayout from "@/layouts/ChartLayout.vue";
+import chartMixin from "@/mixins/chart.mixin";
+import { CircleType } from "@/types/SvgTypes";
 export default defineComponent({
+  components: { ChartLayout },
   name: "RadialChart",
   props: {
     chartData: {
@@ -43,11 +55,12 @@ export default defineComponent({
     return {
       per: 0,
       svg: {
-        circles: [] as Array<{ strokeDashoffset: number; strokeColor: string }>,
+        circles: [] as Array<CircleType & { label: string | number }>,
       },
       chartIsReady: false, //bind to res,
     };
   },
+  mixins: [chartMixin],
   computed: {
     getParsedChartData(): Array<RadialChartType> {
       return JSON.parse(JSON.stringify(this.chartData));
@@ -70,7 +83,9 @@ export default defineComponent({
         );
         this.svg.circles.push({
           strokeDashoffset: 550 - (550 * (dashVal + total)) / 100,
-          strokeColor: getRandomColor(),
+          stroke: getRandomColor(),
+          r: 0,
+          label: item.label,
         });
         total = total + dashVal;
       });
@@ -88,16 +103,15 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .radial-chart {
-  position: relative;
   border: 2px dashed $gray-one;
   border-radius: 5px;
   svg {
-    circle {
-      fill: transparent;
-      stroke-width: 30px;
-      animation: dashEffect 0.8s ease-in-out;
-      &:hover {
-        stroke: $dark-one;
+    .circles {
+      circle {
+        fill: transparent;
+        stroke-width: 30px;
+        animation: dashEffect 0.8s ease-in-out;
+        stroke-dasharray: 550;
       }
     }
   }

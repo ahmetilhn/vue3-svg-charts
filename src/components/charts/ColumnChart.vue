@@ -107,8 +107,6 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .column-chart {
-  width: 100%;
-  height: 100%;
   svg {
     transform: scaleY(-1);
     .rects {

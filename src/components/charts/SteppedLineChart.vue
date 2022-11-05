@@ -1,29 +1,38 @@
 <template>
-  <div
-    class="stepped-line-chart bordered"
-    :style="{ width: chartWidth + 'px', height: chartHeight + 'px' }"
+  <chart-layout
+    :chart-height="chartHeight"
+    :chart-width="chartWidth"
+    :tooltip="tooltip"
+    :is-error="!chartIsReady"
   >
-    <svg v-if="chartIsReady" :width="chartWidth" :height="chartHeight">
-      <path :d="svg.d" />
-      <g class="lines">
-        <line
-          v-for="item in svg.lines"
-          :key="item.y2"
-          :x1="item.x1"
-          :y1="item.y1"
-          :x2="item.x2"
-          :y2="item.y2"
-          stroke="black"
-        />
-      </g>
-    </svg>
-  </div>
+    <template v-slot:chart>
+      <div class="stepped-line-chart chart bordered">
+        <svg :width="chartWidth" :height="chartHeight">
+          <path :d="svg.d" />
+          <g class="lines">
+            <line
+              v-for="item in svg.lines"
+              :key="item.y2"
+              :x1="item.x1"
+              :y1="item.y1"
+              :x2="item.x2"
+              :y2="item.y2"
+            />
+          </g>
+        </svg>
+      </div>
+    </template>
+  </chart-layout>
 </template>
 <script lang="ts">
 import { LineChartType } from "@/types/ChartTypes";
 import { defineComponent, PropType } from "vue";
 import { heightToValCalc } from "@/utils/chart-algorithm";
+import ChartLayout from "@/layouts/ChartLayout.vue";
+import chartMixin from "@/mixins/chart.mixin";
+import { LineType } from "@/types/SvgTypes";
 export default defineComponent({
+  components: { ChartLayout },
   name: "SteppedLineChart",
   props: {
     chartData: {
@@ -45,11 +54,12 @@ export default defineComponent({
       per: 0,
       svg: {
         d: "",
-        lines: [] as { x1: number; y1: number; x2: number; y2: number }[],
+        lines: [] as Array<LineType>,
       },
       chartIsReady: false, //bind to res,
     };
   },
+  mixins: [chartMixin],
   computed: {
     getParsedChartData(): Array<LineChartType> {
       return JSON.parse(JSON.stringify(this.chartData));
@@ -96,7 +106,6 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .stepped-line-chart {
-  position: relative;
   svg {
     path,
     .lines > line {

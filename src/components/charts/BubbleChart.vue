@@ -104,8 +104,6 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .bubble-chart {
-  width: 100%;
-  height: 100%;
   svg {
     .circles {
       circle {
