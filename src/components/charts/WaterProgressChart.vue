@@ -27,15 +27,15 @@
             class="water"
           />
           <text
-            :x="Number(chartWidth) / 2 - 16"
-            :y="Number(chartHeight) - (chartData.value * 120) / 100 / 2"
-            style="fill: white;font-weight: bold"
+            :x="Number(chartWidth) / 2 - String(chartData.value).length * 8"
+            :y="Number(chartHeight) - (chartData.value * 120) / 100 / 2 + 5"
+            style="fill: white; font-weight: bold"
           >
             %{{ chartData.value }}
           </text>
           <circle
             :cx="Number(chartWidth) / 2"
-            :cy="Number(chartHeight) / 2"
+            :cy="Number(chartHeight) / 2 + 2"
             :r="Number(chartHeight) / 2"
             class="water-cup"
           />
@@ -108,12 +108,21 @@ export default defineComponent({
   border: 2px dashed $gray-one;
   border-radius: 5px;
   svg {
+    &:hover {
+      .water {
+        fill: $primary-color;
+      }
+    }
     .water {
       fill: $primary-color-light;
     }
-
+    clipPath {
+      rect {
+        animation: heightEffect 1s ease alternate;
+      }
+    }
     .water-cup {
-      stroke-width: 3;
+      stroke-width: 4;
       fill: transparent;
       stroke: $primary-color;
     }
