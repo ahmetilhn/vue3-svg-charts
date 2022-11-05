@@ -4,7 +4,12 @@
     chartHeight="200"
     chartWidth="350"
   />
-  <line-chart
+  <dotted-line-chart
+    :chartData="exampleChartData['line-chart-data']"
+    chartHeight="200"
+    chartWidth="350"
+  />
+  <stepped-line-chart
     :chartData="exampleChartData['line-chart-data']"
     chartHeight="200"
     chartWidth="350"
@@ -13,7 +18,8 @@
 
 <script lang="ts">
 import ColumnChart from "@/components/charts/ColumnChart.vue";
-import LineChart from "@/components/charts/LineChart.vue";
+import DottedLineChart from "@/components/charts/DottedLineChart.vue";
+import SteppedLineChart from "@/components/charts/SteppedLineChart.vue";
 import exampleChartData from "@/data/chart-example-data.json";
 import "@/assets/sass/theme.scss";
 import { defineComponent } from "vue";
@@ -21,7 +27,8 @@ export default defineComponent({
   name: "App",
   components: {
     ColumnChart,
-    LineChart,
+    SteppedLineChart,
+    DottedLineChart,
   },
   data() {
     return {
@@ -42,6 +49,7 @@ export default defineComponent({
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
   div {
     margin: 20px;
   }

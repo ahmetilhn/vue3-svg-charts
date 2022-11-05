@@ -1,6 +1,6 @@
 <template>
   <div
-    class="line-chart bordered"
+    class="dotted-line-chart bordered"
     :style="{ width: chartWidth + 'px', height: chartHeight + 'px' }"
   >
     <svg v-if="chartIsReady" :width="chartWidth" :height="chartHeight">
@@ -22,7 +22,7 @@ import { LineChartType } from "@/types/ChartTypes";
 import { defineComponent, PropType } from "vue";
 import { heightToValCalc } from "@/utils/chart-algorithm";
 export default defineComponent({
-  name: "LineChart",
+  name: "DottedLineChart",
   props: {
     chartData: {
       type: Array as PropType<LineChartType[]>,
@@ -106,7 +106,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-.line-chart {
+.dotted-line-chart {
   position: relative;
   svg {
     path {
