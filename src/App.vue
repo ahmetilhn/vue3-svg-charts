@@ -2,28 +2,28 @@
   <div class="container">
     <column-chart
       :chartData="exampleChartData['column-chart-data']"
-      chartHeight="200"
-      chartWidth="350"
+      chartHeight="120"
+      chartWidth="240"
     />
     <dotted-line-chart
       :chartData="exampleChartData['line-chart-data']"
-      chartHeight="200"
-      chartWidth="350"
+      chartHeight="120"
+      chartWidth="240"
     />
     <stepped-line-chart
       :chartData="exampleChartData['line-chart-data']"
-      chartHeight="200"
-      chartWidth="350"
+      chartHeight="120"
+      chartWidth="240"
     />
     <bubble-chart
       :chartData="exampleChartData['bubble-chart-data']"
-      chartHeight="200"
-      chartWidth="350"
+      chartHeight="120"
+      chartWidth="240"
     />
     <radial-chart
       :chartData="exampleChartData['radial-chart-data']"
-      chartHeight="200"
-      chartWidth="350"
+      chartHeight="120"
+      chartWidth="240"
     />
   </div>
 </template>

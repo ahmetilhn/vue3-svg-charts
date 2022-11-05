@@ -12,7 +12,7 @@
             <circle
               v-for="item in reversedCircles"
               :key="item.strokeDashoffset"
-              :r="Number(chartWidth) / 4.5"
+              :r="Number(chartHeight) / 2.8"
               :cx="Number(chartWidth) / 2"
               :cy="Number(chartHeight) / 2"
               :stroke="item.stroke"
@@ -45,10 +45,12 @@ export default defineComponent({
     chartHeight: {
       type: String || Number,
       required: false,
+      default: 200,
     },
     chartWidth: {
       type: String || Number,
       required: false,
+      default: 350,
     },
   },
   data() {

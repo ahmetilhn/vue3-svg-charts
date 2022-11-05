@@ -15,6 +15,7 @@
               :key="item.cx"
               :cx="item.cx"
               :cy="item.cy"
+              @mousemove="hoverTooltip($event, item.label)"
             />
           </g>
         </svg>
@@ -41,10 +42,12 @@ export default defineComponent({
     chartHeight: {
       type: String || Number,
       required: false,
+      default: 200,
     },
     chartWidth: {
       type: String || Number,
       required: false,
+      default: 350,
     },
   },
   data() {
@@ -54,7 +57,7 @@ export default defineComponent({
         path: {
           d: "",
         } as PathType,
-        circles: [] as CircleType[],
+        circles: [] as Array<CircleType & { label: string | number }>,
       },
       chartIsReady: false, //bind to res,
     };
@@ -95,15 +98,16 @@ export default defineComponent({
           DMY = DMY + 5;
         }
         d = d.concat(`M${DMX} ${lastDMY} L${(index + 1) * distance} ${DMY} `);
-        this.setCircle({ cx: DMX, cy: lastDMY });
+        this.setCircle({ cx: DMX, cy: lastDMY, label: item.label });
         this.svg.path.d = d;
         lastDMY = DMY;
       });
     },
-    setCircle(circle: CircleType) {
+    setCircle(circle: CircleType & { label: string | number }) {
       this.svg.circles.push({
         cx: circle.cx,
         cy: circle.cy,
+        label: circle.label,
       });
     },
     initSVG() {

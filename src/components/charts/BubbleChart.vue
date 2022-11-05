@@ -41,10 +41,12 @@ export default defineComponent({
     chartHeight: {
       type: String || Number,
       required: false,
+      default: 200,
     },
     chartWidth: {
       type: String || Number,
       required: false,
+      default: 350,
     },
   },
   data() {
