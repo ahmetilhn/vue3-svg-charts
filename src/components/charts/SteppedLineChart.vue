@@ -17,6 +17,7 @@
               :y1="item.y1"
               :x2="item.x2"
               :y2="item.y2"
+              @mousemove="hoverTooltip($event, item.label)"
             />
           </g>
         </svg>
@@ -56,7 +57,7 @@ export default defineComponent({
       per: 0,
       svg: {
         d: "",
-        lines: [] as Array<LineType>,
+        lines: [] as Array<LineType & { label: string | number }>,
       },
       chartIsReady: false, //bind to res,
     };
@@ -89,6 +90,7 @@ export default defineComponent({
             y1: lastDMY,
             x2: DMX,
             y2: DMY,
+            label: item.value,
           });
         }
         lastDMY = DMY;

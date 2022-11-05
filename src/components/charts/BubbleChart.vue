@@ -15,6 +15,7 @@
               :cx="item.cx"
               :cy="item.cy"
               :r="item.r"
+              @mousemove="hoverTooltip($event, item.label)"
             />
           </g>
         </svg>
@@ -53,7 +54,7 @@ export default defineComponent({
     return {
       per: 0,
       svg: {
-        circles: [] as Array<CircleType>,
+        circles: [] as Array<CircleType & { label: string | number }>,
       },
       chartIsReady: false, //bind to res,
     };
@@ -90,6 +91,7 @@ export default defineComponent({
           cx: distance,
           cy: Number(this.chartHeight) - scaledVal,
           r: scaledVal / min / 1.5,
+          label: item.value,
         });
       });
     },
