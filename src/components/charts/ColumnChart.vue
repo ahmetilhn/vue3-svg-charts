@@ -1,42 +1,40 @@
 <template>
-  <div
-    :style="{ width: chartWidth + 'px', height: chartHeight + 'px' }"
-    class="column-chart bordered"
+  <chart-layout
+    :chart-height="chartHeight"
+    :chart-width="chartWidth"
+    :is-error="!chartIsReady"
+    :tooltip="tooltip"
   >
-    <template v-if="chartIsReady">
-      <svg v-if="chartIsReady" :width="chartWidth" :height="chartHeight">
-        <g
-          @mouseover="hoverTooltip($event, item.tooltip_content)"
-          class="column"
-          v-for="(item, index) in getParsedChartData"
-          :key="item.value"
-        >
-          <rect
-            :height="getRectHeight(item)"
-            :width="svg.rectWidth"
-            :x="svg.rectX * index"
-          ></rect>
-        </g>
-      </svg>
-      <chart-tooltip :tooltip="tooltip" />
+    <template v-slot:chart>
+      <div class="column-chart bordered" v-if="chartIsReady">
+        <svg :width="chartWidth" :height="chartHeight">
+          <g
+            @mouseover="hoverTooltip($event, item.tooltip_content)"
+            class="column"
+            v-for="(item, index) in getParsedChartData"
+            :key="item.value"
+          >
+            <rect
+              :height="getRectHeight(item)"
+              :width="svg.rectWidth"
+              :x="svg.rectX * index"
+            ></rect>
+          </g>
+        </svg>
+      </div>
     </template>
-    <template v-else>
-      <error-result />
-    </template>
-  </div>
+  </chart-layout>
 </template>
 <script lang="ts">
 import chartMixin from "@/mixins/chart.mixin";
-import ChartTooltip from "../ChartTooltip.vue";
-import ErrorResult from "@/components/ErrorResult.vue";
+import ChartLayout from "@/layouts/ChartLayout.vue";
 import { defineComponent, PropType } from "vue";
 import { ColumnChartType } from "@/types/ChartTypes";
 import { heightToValCalc } from "@/utils/chart-algorithm";
 export default defineComponent({
   name: "ColumnChart",
   components: {
-    ChartTooltip,
-    ErrorResult,
+    ChartLayout,
   },
   props: {
     chartData: {
@@ -62,6 +60,7 @@ export default defineComponent({
       },
       chartIsReady: false, //bind to res,
       average: 0,
+      isError: false,
     };
   },
   computed: {
@@ -109,6 +108,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .column-chart {
   position: relative;
+  width: 100%;
+  height: 100%;
   svg {
     transform: scaleY(-1);
     .column {
@@ -122,11 +123,6 @@ export default defineComponent({
         transition: height 0.2s;
         animation: heightEffect 0.5s forwards;
       }
-    }
-  }
-  &:hover {
-    .chart-tooltip {
-      visibility: visible;
     }
   }
 }

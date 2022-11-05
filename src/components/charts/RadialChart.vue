@@ -68,7 +68,6 @@ export default defineComponent({
           [...sortedData.map((item) => item.value)],
           item.value
         );
-        console.log(dashVal, total);
         this.svg.circles.push({
           strokeDashoffset: 550 - (550 * (dashVal + total)) / 100,
           strokeColor: getRandomColor(),

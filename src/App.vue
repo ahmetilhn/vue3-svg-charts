@@ -1,29 +1,31 @@
 <template>
-  <column-chart
-    :chartData="exampleChartData['column-chart-data']"
-    chartHeight="200"
-    chartWidth="350"
-  />
-  <dotted-line-chart
-    :chartData="exampleChartData['line-chart-data']"
-    chartHeight="200"
-    chartWidth="350"
-  />
-  <stepped-line-chart
-    :chartData="exampleChartData['line-chart-data']"
-    chartHeight="200"
-    chartWidth="350"
-  />
-  <bubble-chart
-    :chartData="exampleChartData['bubble-chart-data']"
-    chartHeight="200"
-    chartWidth="350"
-  />
-  <radial-chart
-    :chartData="exampleChartData['radial-chart-data']"
-    chartHeight="200"
-    chartWidth="350"
-  />
+  <div class="container">
+    <column-chart
+      :chartData="exampleChartData['column-chart-data']"
+      chartHeight="200"
+      chartWidth="350"
+    />
+    <dotted-line-chart
+      :chartData="exampleChartData['line-chart-data']"
+      chartHeight="200"
+      chartWidth="350"
+    />
+    <stepped-line-chart
+      :chartData="exampleChartData['line-chart-data']"
+      chartHeight="200"
+      chartWidth="350"
+    />
+    <bubble-chart
+      :chartData="exampleChartData['bubble-chart-data']"
+      chartHeight="200"
+      chartWidth="350"
+    />
+    <radial-chart
+      :chartData="exampleChartData['radial-chart-data']"
+      chartHeight="200"
+      chartWidth="350"
+    />
+  </div>
 </template>
 
 <script lang="ts">
@@ -52,8 +54,8 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
-#app {
+<style lang="scss" scoped>
+.container {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -64,7 +66,7 @@ export default defineComponent({
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  div {
+  ::v-deep(.chart-layout) {
     margin: 20px;
   }
 }
