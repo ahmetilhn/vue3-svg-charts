@@ -20,6 +20,7 @@
 <script lang="ts">
 import { LineChartType } from "@/types/ChartTypes";
 import { defineComponent, PropType } from "vue";
+import { heightToValCalc } from "@/utils/chart-algorithm";
 export default defineComponent({
   name: "LineChart",
   props: {
@@ -63,11 +64,13 @@ export default defineComponent({
         if (index === 0) {
           return;
         }
-        if (Number(this.chartHeight) > item.value) {
-          DMY = Number(this.chartHeight) - item.value;
-        } else {
-          DMY = 0;
-        }
+        DMY =
+          Number(this.chartHeight) -
+          heightToValCalc(
+            [...this.getParsedChartData.map((item) => item.value)],
+            item.value,
+            Number(this.chartHeight)
+          );
         // margin for UI
         if (index === 1) {
           DMX = 5;
