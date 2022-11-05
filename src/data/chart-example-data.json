@@ -1,7 +1,7 @@
 {
   "column-chart-data": [
     {
-      "value": 100,
+      "value": 10,
       "tooltip_content": "100"
     },
     {
@@ -25,7 +25,7 @@
       "tooltip_content": "10"
     },
     {
-      "value": 100,
+      "value": 20,
       "tooltip_content": "300"
     },
     {
@@ -33,15 +33,15 @@
       "tooltip_content": "200"
     },
     {
-      "value": 100,
+      "value": 10,
       "tooltip_content": "100"
     },
     {
-      "value": 100,
+      "value": 10,
       "tooltip_content": "500"
     },
     {
-      "value": 100,
+      "value": 30,
       "tooltip_content": "300"
     },
     {

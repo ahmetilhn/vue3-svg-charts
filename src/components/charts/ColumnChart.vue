@@ -82,20 +82,11 @@ export default defineComponent({
       }
     },
     getRectHeight(_data: ColumnChartType): number {
-      const minVal = Math.min(
-        ...this.getParsedChartData.map((item) => item.value)
-      );
-      const maxVal = Math.max(
-        ...this.getParsedChartData.map((item) => item.value)
-      );
       const sum: number = this.getOnlyValues?.reduce((a: number, b: number) => {
         return Number(a) + Number(b);
       });
       const avg: number = sum / this.getParsedChartData.length || 0;
       this.average = avg;
-      if (_data.value >= Number(this.chartHeight)) {
-        return Number(this.chartHeight);
-      }
       return heightToValCalc(
         [...this.getParsedChartData.map((item) => item.value)],
         _data.value,
