@@ -74,7 +74,7 @@ export default defineComponent({
       let lastDMY: number;
       const distance = Number(this.chartWidth) / this.per;
       this.getParsedChartData.forEach((item: LineChartType, index: number) => {
-        const DMY =
+        let DMY =
           Number(this.chartHeight) -
           heightToValCalc(
             [...this.getParsedChartData.map((item) => item.value)],
@@ -82,7 +82,9 @@ export default defineComponent({
             Number(this.chartHeight)
           );
         const DMX = index * distance;
-
+        if (DMY === 0) {
+          DMY = DMY + 1;
+        }
         d = d.concat(`M${DMX} ${DMY} L${DMX + distance} ${DMY} `);
         if (index !== 0) {
           this.svg.lines.push({

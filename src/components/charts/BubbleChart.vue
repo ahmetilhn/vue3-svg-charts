@@ -112,6 +112,12 @@ export default defineComponent({
     .circles {
       circle {
         fill: $primary-color;
+        animation: svgCircleEffect 1s ease;
+        transition: r 0.2s ease;
+        &:hover {
+          r: 10;
+          fill: $primary-color-light;
+        }
       }
     }
   }
