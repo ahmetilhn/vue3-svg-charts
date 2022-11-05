@@ -25,6 +25,11 @@
       chartHeight="120"
       chartWidth="240"
     />
+    <water-progress-chart
+      :chartData="exampleChartData['water-progress-chart-data']"
+      chartHeight="120"
+      chartWidth="240"
+    />
   </div>
 </template>
 
@@ -34,6 +39,7 @@ import DottedLineChart from "@/components/charts/DottedLineChart.vue";
 import SteppedLineChart from "@/components/charts/SteppedLineChart.vue";
 import BubbleChart from "@/components/charts/BubbleChart.vue";
 import RadialChart from "@/components/charts/RadialChart.vue";
+import WaterProgressChart from "@/components/charts/WaterProgressChart.vue";
 import exampleChartData from "@/data/chart-example-data.json";
 import "@/assets/sass/theme.scss";
 import { defineComponent } from "vue";
@@ -45,6 +51,7 @@ export default defineComponent({
     DottedLineChart,
     BubbleChart,
     RadialChart,
+    WaterProgressChart,
   },
   data() {
     return {

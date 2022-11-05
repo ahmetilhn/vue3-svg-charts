@@ -118,5 +118,8 @@
       "value": 100,
       "label": "100"
     }
-  ]
+  ],
+  "water-progress-chart-data": {
+    "value": 60
+  }
 }
