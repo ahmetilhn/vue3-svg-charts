@@ -67,7 +67,7 @@ export default defineComponent({
   justify-content: center;
   flex-wrap: wrap;
   ::v-deep(.chart-layout) {
-    margin: 20px;
+    margin: 30px;
   }
 }
 </style>
