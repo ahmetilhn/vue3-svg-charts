@@ -1,11 +1,11 @@
 {
   "name": "vue3-svg-charts",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:pack":"vue-cli-service build --target lib --inline-vue",
+    "build:pack": "vue-cli-service build --target lib --inline-vue",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
