@@ -27,9 +27,13 @@
             class="water"
           />
           <text
-            :x="Number(chartWidth) / 2 - String(chartData.value).length * 8"
-            :y="Number(chartHeight) - (chartData.value * 120) / 100 / 2 + 5"
-            style="fill: white; font-weight: bold"
+            :x="Number(chartWidth) / 2"
+            :y="
+              Number(chartHeight) -
+              (chartData.value * Number(chartHeight)) / 100 / 2
+            "
+            style="fill: white; font-weight: bold; font-size: 14px"
+            text-anchor="middle"
           >
             %{{ chartData.value }}
           </text>
@@ -46,10 +50,9 @@
 </template>
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { ratioToRadialDash } from "@/utils/chart-algorithm";
 import ChartLayout from "@/layouts/ChartLayout.vue";
 import chartMixin from "@/mixins/chart.mixin";
-import { CircleType, PathType, RectType } from "@/types/SvgTypes";
+import { CircleType, RectType } from "@/types/SvgTypes";
 import { WaterProgressChartType } from "@/types/ChartTypes";
 export default defineComponent({
   components: { ChartLayout },
